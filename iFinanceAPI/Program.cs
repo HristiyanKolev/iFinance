@@ -3,20 +3,27 @@ using Microsoft.EntityFrameworkCore;
 using UserServices.Implementations;
 using UserServices.Contracts;
 using UserServices.DBContext;
+using iFinanceAPI.MappingProfiles;
+
+using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddControllers();
+builder.Services.AddControllers().AddNewtonsoftJson(s =>
+{
+    s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+});
 
-builder.Services.AddScoped<IUserMethods, UserMethods>();
-builder.Services.AddDbContext<UserContext>(opt => opt.UseSqlServer
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+builder.Services.AddScoped<IUserService, UserServices.Implementations.UserService>();
+builder.Services.AddDbContext<UserServiceContext>(opt => opt.UseSqlServer
     (builder.Configuration.GetConnectionString("iFinanceConnection")));
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 var app = builder.Build();
 
