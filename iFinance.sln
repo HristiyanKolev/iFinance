@@ -5,6 +5,12 @@ VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iFinanceAPI", "iFinanceAPI\iFinanceAPI.csproj", "{DC8EB869-AAAD-45BC-9BD5-73A411202663}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{73C5F996-80B3-46FF-8F82-F55036C7D2CD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{830F12DB-9A2D-4602-9091-9704A183B7AB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserServices", "Services\UserServices\UserServices.csproj", "{F802A706-0ED6-4D14-8685-A7914845CFC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +21,16 @@ Global
 		{DC8EB869-AAAD-45BC-9BD5-73A411202663}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC8EB869-AAAD-45BC-9BD5-73A411202663}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC8EB869-AAAD-45BC-9BD5-73A411202663}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F802A706-0ED6-4D14-8685-A7914845CFC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F802A706-0ED6-4D14-8685-A7914845CFC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F802A706-0ED6-4D14-8685-A7914845CFC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F802A706-0ED6-4D14-8685-A7914845CFC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F802A706-0ED6-4D14-8685-A7914845CFC2} = {830F12DB-9A2D-4602-9091-9704A183B7AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6D2B2BDD-62D8-412E-84D7-1D40405C6F93}
