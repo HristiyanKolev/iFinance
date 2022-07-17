@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using UsersService.Models;
+using UserService.Models;
 
-namespace UsersServices.DBContext
+namespace UserServices.DBContext
 {
-    public class UsersContext : DbContext
+    public class UserContext : DbContext
     {
-        public UsersContext(DbContextOptions<UsersContext> options) : base(options)
+        public UserContext(DbContextOptions<UserContext> options) : base(options)
         {
 
         }

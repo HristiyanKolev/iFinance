@@ -1,6 +1,6 @@
-﻿using UsersService.Models;
+﻿using UserService.Models;
 
-namespace UsersServices.Contracts
+namespace UserServices.Contracts
 {
     public interface IUserMethods
     {

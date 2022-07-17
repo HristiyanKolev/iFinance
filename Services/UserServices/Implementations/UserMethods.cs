@@ -1,14 +1,14 @@
-﻿using UsersService.Models;
-using UsersServices.Contracts;
-using UsersServices.DBContext;
+﻿using UserService.Models;
+using UserServices.Contracts;
+using UserServices.DBContext;
 
 namespace UserServices.Implementations
 {
-    public class User : IUserMethods
+    public class UserMethods : IUserMethods
     {
-        private readonly UsersContext _context;
+        private readonly UserContext _context;
 
-        public User(UsersContext context)
+        public UserMethods(UserContext context)
         {
             this._context = context;
         }

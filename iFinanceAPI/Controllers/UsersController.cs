@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using UsersService.Models;
-using UsersServices.Contracts;
+using UserService.Models;
+using UserServices.Contracts;
 
 namespace iFinanceAPI.Controllers
 {

@@ -1,5 +1,5 @@
-﻿using UsersService.Models;
-using UsersServices.Contracts;
+﻿using UserService.Models;
+using UserServices.Contracts;
 
 namespace UserServices.Implementations
 {
