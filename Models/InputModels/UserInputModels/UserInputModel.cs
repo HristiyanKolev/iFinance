@@ -1,12 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace iFinanceAPI.Models
+namespace InputModels.UserInputModels
 {
-    public class User
+    public class UserInputModel
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(256)]
         public string Name { get; set; } = null!;

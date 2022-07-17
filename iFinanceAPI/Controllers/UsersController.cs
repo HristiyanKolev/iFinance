@@ -1,6 +1,6 @@
-﻿using iFinanceAPI.Data;
-using iFinanceAPI.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using UsersService.Models;
+using UsersServices.Contracts;
 
 namespace iFinanceAPI.Controllers
 {
@@ -11,27 +11,27 @@ namespace iFinanceAPI.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private readonly IUserRepo _repository;
+        private readonly IUserMethods _iUserService;
 
-        public UsersController(IUserRepo repository)
+        public UsersController(IUserMethods iUserService)
         {
-            this._repository = repository;
+            this._iUserService = iUserService;
         }
         
         //GET api/[Controller]/
         [HttpGet]
-        public ActionResult <IEnumerable<User>> GetAllUsers()
+        public ActionResult <IEnumerable<UserModel>> GetAllUsers()
         {
-            var users = _repository.GetUsers();
+            var users = _iUserService.GetUsers();
 
             return Ok(users);
         }
 
         //GET api/[Controller]/{id}
         [HttpGet("{id}")]
-        public ActionResult<User> GetUserById(int id)
+        public ActionResult<UserModel> GetUserById(int id)
         {
-            var user = _repository.GetUserByID(id);
+            var user = _iUserService.GetUserByID(id);
 
             return Ok(user);
         }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UserService.Models
+namespace UsersService.Models
 {
-    public class UserServiceModel
+    public class UserModel
     {
         [Key]
         public int Id { get; set; }
