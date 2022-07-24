@@ -10,6 +10,7 @@ namespace iFinanceAPI.MappingProfiles
     {
         public UserProfile()
         {
+
             CreateMap<UserInputModel, UserServiceModel>();
             CreateMap<UserServiceModel, UserResponseModel>();
             CreateMap<UserServiceModel, UserInputModel>();

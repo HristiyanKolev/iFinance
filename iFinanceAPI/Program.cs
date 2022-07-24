@@ -1,23 +1,26 @@
 using Microsoft.EntityFrameworkCore;
-
-using UserServices.Implementations;
 using UserServices.Contracts;
-using UserServices.DBContext;
-using iFinanceAPI.MappingProfiles;
 
 using Newtonsoft.Json.Serialization;
+using iFinanceAPI.DBContext;
+using FinanceControlServices.DBContext;
+using UserServices.DBContext;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IUserService, UserServices.Implementations.UserService>();
 builder.Services.AddControllers().AddNewtonsoftJson(s =>
 {
     s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 });
 
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-builder.Services.AddScoped<IUserService, UserServices.Implementations.UserService>();
+// DBContext Registration
+builder.Services.AddDbContext<ApiContext>(opt => opt.UseSqlServer
+    (builder.Configuration.GetConnectionString("iFinanceConnection")));
+builder.Services.AddDbContext<FinanceControlServiceContext>(opt => opt.UseSqlServer
+    (builder.Configuration.GetConnectionString("iFinanceConnection")));
 builder.Services.AddDbContext<UserServiceContext>(opt => opt.UseSqlServer
     (builder.Configuration.GetConnectionString("iFinanceConnection")));
 

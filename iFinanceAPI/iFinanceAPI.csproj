@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Models\InputModels\InputModels.csproj" />
     <ProjectReference Include="..\Models\ResponseModels\ResponseModels.csproj" />
+    <ProjectReference Include="..\Services\FinanceControlServices\FinanceControlServices.csproj" />
     <ProjectReference Include="..\Services\UserServices\UserServices.csproj" />
   </ItemGroup>
 
