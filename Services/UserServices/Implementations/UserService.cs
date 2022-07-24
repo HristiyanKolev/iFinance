@@ -1,5 +1,4 @@
-﻿using InputModels.UserInputModels;
-using UserService.Models;
+﻿using UserService.Models;
 using UserServices.Contracts;
 using UserServices.DBContext;
 
@@ -13,6 +12,7 @@ namespace UserServices.Implementations
         {
             this._context = context;
         }
+
         public bool SaveChanges()
         {
             return (_context.SaveChanges() >= 0);
@@ -27,7 +27,6 @@ namespace UserServices.Implementations
         {
             return _context.Users.FirstOrDefault(x => x.Id == id);
         }
-
 
         public void CreateUser(UserServiceModel userServiceModel)
         {

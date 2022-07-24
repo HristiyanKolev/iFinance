@@ -9,18 +9,18 @@ using Microsoft.AspNetCore.JsonPatch;
 namespace iFinanceAPI.Controllers
 {
     /// <summary>
-    /// Controller for basic CRUD operations for Users
+    /// Basic CRUD operations for Users
     /// </summary>
     [Route("api/[Controller]")]
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IMapper _iMapper;
+        private readonly IMapper _mapper;
         private readonly IUserService _iUserService;
 
         public UserController(IMapper iMapper, IUserService iUserService)
         {
-            this._iMapper = iMapper;
+            this._mapper = iMapper;
             this._iUserService = iUserService;
         }
 
@@ -38,7 +38,7 @@ namespace iFinanceAPI.Controllers
                 return NotFound();
             }
 
-            IEnumerable<UserResponseModel> responseList = _iMapper.Map<IEnumerable<UserResponseModel>>(users);
+            IEnumerable<UserResponseModel> responseList = _mapper.Map<IEnumerable<UserResponseModel>>(users);
             return Ok(responseList);
         }
 
@@ -57,7 +57,7 @@ namespace iFinanceAPI.Controllers
                 return NotFound();
             }
 
-            UserResponseModel response = _iMapper.Map<UserResponseModel>(user);
+            UserResponseModel response = _mapper.Map<UserResponseModel>(user);
             return Ok(response);
         }
 
@@ -75,7 +75,7 @@ namespace iFinanceAPI.Controllers
                 return NoContent();
             }
 
-            UserServiceModel userServiceModel = _iMapper.Map<UserServiceModel>(userInputModel);
+            UserServiceModel userServiceModel = _mapper.Map<UserServiceModel>(userInputModel);
             _iUserService.CreateUser(userServiceModel);
 
             return CreatedAtRoute(nameof(GetUserById), new { Id = userServiceModel.Id }, userServiceModel);
@@ -97,7 +97,7 @@ namespace iFinanceAPI.Controllers
             }
 
             UserServiceModel userServiceModel = _iUserService.GetUserByID(id);
-            _iMapper.Map(userInputModel, userServiceModel);
+            _mapper.Map(userInputModel, userServiceModel);
             _iUserService.UpdateUser(userServiceModel);
 
             return NoContent();
@@ -118,7 +118,7 @@ namespace iFinanceAPI.Controllers
                 return NoContent();
             }
 
-            UserInputModel userInputModel = _iMapper.Map<UserInputModel>(userServiceModel);
+            UserInputModel userInputModel = _mapper.Map<UserInputModel>(userServiceModel);
             patchDocument.ApplyTo(userInputModel, ModelState);
 
             if (!TryValidateModel(userInputModel))
@@ -126,7 +126,7 @@ namespace iFinanceAPI.Controllers
                 return ValidationProblem(ModelState);
             }
 
-            _iMapper.Map(userInputModel, userServiceModel);
+            _mapper.Map(userInputModel, userServiceModel);
             _iUserService.UpdateUser(userServiceModel);
 
             return NoContent();
