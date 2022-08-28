@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace UserService.Models
+namespace UsersService.Models
 {
     public class UserServiceModel
     {
@@ -8,17 +8,15 @@ namespace UserService.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(256)]
-        public string Name { get; set; } = null!;
+        [MaxLength(50)]
+        public string UserName { get; set; } = null!;
 
         [Required]
-        [MaxLength(256)]
-        public string Password { get; set; } = null!;
+        public DateTime DateCreated { get; set; }
 
-        [MaxLength(320)]
-        public string? Email { get; set; }
+        [Required]
+        [MaxLength(50)]
+        public string UserType { get; set; } = "User";
 
-        [MaxLength(15)]
-        public string? PhoneNumber { get; set; }
     }
 }

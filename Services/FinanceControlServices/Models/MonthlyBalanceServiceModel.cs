@@ -20,8 +20,5 @@ namespace FinanceControlServices.Models
         [Required]
         public ICollection<RecurringEntityServiceModel> RecurringEntities { get; set; }
 
-        //Foreign Key
-        [Required]
-        public QuarterlyBalanceServiceModel QuarterlyBalance { get; set; }
     }
 }

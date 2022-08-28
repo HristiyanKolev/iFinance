@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>b4eee767-4d11-4f26-bcb1-f36ecfc16491</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -29,7 +30,7 @@
     <ProjectReference Include="..\Models\InputModels\InputModels.csproj" />
     <ProjectReference Include="..\Models\ResponseModels\ResponseModels.csproj" />
     <ProjectReference Include="..\Services\FinanceControlServices\FinanceControlServices.csproj" />
-    <ProjectReference Include="..\Services\UserServices\UserServices.csproj" />
+    <ProjectReference Include="..\Services\UserServices\UsersServices.csproj" />
   </ItemGroup>
 
 </Project>

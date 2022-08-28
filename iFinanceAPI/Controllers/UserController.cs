@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using UserServices.Contracts;
-using UserService.Models;
+using UsersServices.Contracts;
+using UsersService.Models;
 using ResponseModels.UserResponseModels;
 using InputModels.UserInputModels;
 using Microsoft.AspNetCore.JsonPatch;
@@ -11,7 +11,7 @@ namespace iFinanceAPI.Controllers
     /// <summary>
     /// Basic CRUD operations for Users
     /// </summary>
-    [Route("api/[Controller]")]
+    [Route("api/[Controller]/")]
     [ApiController]
     public class UserController : ControllerBase
     {
@@ -70,15 +70,22 @@ namespace iFinanceAPI.Controllers
         [HttpPost]
         public ActionResult<UserInputModel> CreateUser(UserInputModel userInputModel)
         {
-            if (userInputModel == null)
+            try
             {
-                return NoContent();
+                UserServiceModel userServiceModel = _mapper.Map<UserServiceModel>(userInputModel);
+                if (userInputModel == null)
+                {
+                    return NoContent();
+                }
+               
+                _iUserService.CreateUser(userServiceModel);
+
+                return CreatedAtRoute(nameof(GetUserById), routeValues: new { Id = userServiceModel.Id }, value: userServiceModel);
             }
-
-            UserServiceModel userServiceModel = _mapper.Map<UserServiceModel>(userInputModel);
-            _iUserService.CreateUser(userServiceModel);
-
-            return CreatedAtRoute(nameof(GetUserById), new { Id = userServiceModel.Id }, userServiceModel);
+            catch (ArgumentException ex)
+            {
+                return BadRequest(ex.Message);               
+            }          
         }
 
         //PUT api/[Controller]/{id}
@@ -132,8 +139,13 @@ namespace iFinanceAPI.Controllers
             return NoContent();
         }
 
-        [HttpDelete]
-        public ActionResult DeleteCommand(int id)
+        /// <summary>
+        /// Delete a User with matching ID
+        /// </summary>
+        /// <param name="id">User ID</param>
+        /// <returns></returns>
+        [HttpDelete("{id}")]
+        public ActionResult DeleteUser(int id)
         {
             UserServiceModel userServiceMode = _iUserService.GetUserByID(id);
             if (userServiceMode == null)

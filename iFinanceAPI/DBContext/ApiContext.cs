@@ -1,6 +1,6 @@
 ﻿using FinanceControlServices.Models;
 using Microsoft.EntityFrameworkCore;
-using UserService.Models;
+using UsersService.Models;
 
 namespace iFinanceAPI.DBContext
 {
@@ -11,7 +11,9 @@ namespace iFinanceAPI.DBContext
 
         }
 
-        public DbSet<YearlyBalanceServiceModel> YearlyBalances { get; set; } = null!;
+        public DbSet<MonthlyBalanceServiceModel> MonthlyBalances { get; set; } = null!;
+        public DbSet<RecurringEntityServiceModel> RecurringEntities { get; set; } = null!;
+        public DbSet<EntityServiceModel> Entities { get; set; } = null!;
         public DbSet<UserServiceModel> Users { get; set; } = null!;
     }
 }

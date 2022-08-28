@@ -1,7 +1,7 @@
 ﻿using InputModels.UserInputModels;
-using UserService.Models;
+using UsersService.Models;
 
-namespace UserServices.Contracts
+namespace UsersServices.Contracts
 {
     public interface IUserService
     {

@@ -1,8 +1,8 @@
-﻿using UserService.Models;
-using UserServices.Contracts;
-using UserServices.DBContext;
+﻿using UsersService.Models;
+using UsersServices.Contracts;
+using UsersServices.DBContext;
 
-namespace UserServices.Implementations
+namespace UsersServices.Implementations
 {
     public class UserService : IUserService
     {
@@ -30,10 +30,11 @@ namespace UserServices.Implementations
 
         public void CreateUser(UserServiceModel userServiceModel)
         {
-            if(userServiceModel == null)
-            {
-                throw new ArgumentNullException(nameof(userServiceModel));
-            }
+            CheckIfUsernameIsTaken(userServiceModel);
+
+            userServiceModel.UserType = userServiceModel.UserType.ToLower();
+            
+            userServiceModel.DateCreated = DateTime.Now;
 
             _context.Users.Add(userServiceModel);
 
@@ -57,6 +58,15 @@ namespace UserServices.Implementations
             _context.Users.Remove(userServiceModel);
 
             _context.SaveChanges();
+        }
+
+        private void CheckIfUsernameIsTaken(UserServiceModel userServiceModel)
+        {
+            IEnumerable<UserServiceModel> users = GetUsers();
+            if (users.FirstOrDefault(u => u.UserName == userServiceModel.UserName) != null)
+            {
+                throw new ArgumentException("UserName already in use");
+            }
         }
     }
 }

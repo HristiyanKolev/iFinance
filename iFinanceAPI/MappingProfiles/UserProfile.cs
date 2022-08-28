@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 
 using InputModels.UserInputModels;
-using UserService.Models;
+using UsersService.Models;
 using ResponseModels.UserResponseModels;
 
 namespace iFinanceAPI.MappingProfiles
@@ -12,7 +12,6 @@ namespace iFinanceAPI.MappingProfiles
         {
             CreateMap<UserInputModel, UserServiceModel>();
             CreateMap<UserServiceModel, UserResponseModel>();
-            CreateMap<UserServiceModel, UserInputModel>();
         } 
     }
 }
